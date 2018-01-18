@@ -1,18 +1,18 @@
-'use strict';
-
-// Call this function when the page loads (the "ready" event)
-$(document).ready(function() {
-	initializePage();
-})
-
-/*
- * Function that is called when the document is ready.
+/**
+ * Listen to scroll to change header opacity class
  */
-function initializePage() {
-	$("#testjs").click(function(e) {
-		$('.jumbotron h1').text("Javascript is connected");
-	});
+function checkScroll(){
+    var startY = $('.navbar').height(); //The point where the navbar changes in px
 
-	// Add any additional listeners here
-	// example: $("#div-id").click(functionToCall);
+    if($(window).scrollTop() > startY){
+        $('.navbar-default').addClass("scrolled");
+    }else{
+        $('.navbar-default').removeClass("scrolled");
+    }
+}
+
+if($('.navbar-default').length > 0){
+    $(window).on("scroll load resize", function(){
+        checkScroll();
+    });
 }
